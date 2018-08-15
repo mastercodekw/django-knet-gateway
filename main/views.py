@@ -34,7 +34,7 @@ def thankyou_page(request,pid):
     if not pid:
         return HttpResponse('There was an error with your request')
     else:
-        t = Transaction.query.filter_by(payment_id=pid).first()
+        t = Transaction.objects.filter(payment_id=pid).first()
         if t is not None:
             return HttpResponse('Your payment was successful ID: %d' % t.id)
         return HttpResponse('There was an error with your request ID: %s'% pid)
@@ -46,13 +46,13 @@ def result_page(request):
         return HttpResponse('There was an error with your request ID: %s'% pid)
     r = request.POST.get('result')
     t.result = r
-    t.postdate = date(date.today().year, int(request.POST.get('postdate')[:2]), int(request.POST.get('postdate')[2:]))
+    t.postdate = date(date.today().year, int(request.POST.get('postdate',str(date.today().month))[:2]), int(request.POST.get('postdate', str(date.today().day))[:2]) )
     t.transaction_id = request.POST.get('tranid')
     t.tracking_id = request.POST.get('trackid')
     t.reference = request.POST.get('ref')
     t.auth = request.POST.get('auth')
     t.save()
-    if r == unicode('CANCELLED') or r == unicode('NOT CAPTURED'):
+    if r == "CANCELED" or r == 'NOT CAPTURED':
         return redirect('error_page', pid=pid)
     return redirect('success_page', pid=pid)
 

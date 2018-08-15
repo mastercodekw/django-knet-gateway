@@ -20,7 +20,7 @@ from main import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^error/(?P<pid>[0-9]+|)', views.error_page, name="error_page"),
-    url(r'^success/', views.thankyou_page),
+    url(r'^success/(?P<pid>[0-9]+|)', views.thankyou_page, name="success_page"),
     url(r'^result/', views.result_page),
     url(r'^entry/(?P<id>[0-9]+)/(?P<total>[0-9]+)', views.entry_page)
 ]
