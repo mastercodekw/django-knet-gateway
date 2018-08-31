@@ -18,17 +18,9 @@ from django.contrib import admin
 from main import views
 
 urlpatterns = [
-<<<<<<< HEAD
-    url(r'^admin/', admin.site.urls),
-    url(r'^error/(?P<pid>[0-9]+|)', views.error_page, name="error_page"),
-    url(r'^success/(?P<pid>[0-9]+|)', views.thankyou_page, name="success_page"),
-    url(r'^result/', views.result_page),
-    url(r'^entry/(?P<id>[0-9]+)/(?P<total>[0-9]+)', views.entry_page)
-=======
     url(r'^gateway/admin/', admin.site.urls),
     url(r'^gateway/error/(?P<pid>[0-9]+|)', views.error_page, name="error_page"),
     url(r'^gateway/thankyou/(?P<pid>[0-9]+|)', views.thankyou_page, name="success_page"),
     url(r'^gateway/result/', views.result_page),
     url(r'^gateway/entry/(?P<id>[0-9]+)/(?P<total>[0-9]+)', views.entry_page)
->>>>>>> Fixes
 ]
