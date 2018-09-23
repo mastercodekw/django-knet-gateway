@@ -73,7 +73,7 @@ def entry_page(request,id,total):
     knet.amount = total
     payment_id, payment_url = knet.get_payment_url().values()
     trackid = knet.trackid
-    t = Transaction(tracking_id=trackid,total=total,payment_id=payment_id,renter=id)
+    t = Transaction(tracking_id=trackid,total=total,payment_id=payment_id)
     t.save()
     return redirect(payment_url + "?PaymentID=" + payment_id)
 
